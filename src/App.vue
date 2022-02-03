@@ -1,18 +1,20 @@
 <template>
   <div id="app">
    <search-bar @change="filterFilms"/>
+   <main-app :films="films"/>
   </div>
 </template>
 
 <script>
 import SearchBar from './components/SearchBar.vue'
+import MainApp from './components/MainApp.vue'
 import axios from 'axios'
 
 export default {
   name: 'App',
   components: {
-    SearchBar
-    
+    SearchBar,
+    MainApp
   },
   data(){
     return{
