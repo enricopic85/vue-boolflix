@@ -1,7 +1,9 @@
 <template>
   <div id="app">
-   <search-bar @change="filterFilms"/>
-   <main-app :films="films"/>
+   <search-bar @change="filterAll"/>
+   <main-app 
+   :films="films"
+   :series="series"/>
   </div>
 </template>
 
@@ -18,19 +20,34 @@ export default {
   },
   data(){
     return{
-      films:[]
+      films:[],
+      series:[]
     }
   },
   mounted(){
-      
+     
   },
+
   methods:{
+   
     filterFilms(search){
       axios.get(`https://api.themoviedb.org/3/search/movie?api_key=41fa5602201a40cb6b8e1b749664bd8a&language=it&query=${search}`).then((response)=>{
         this.films=response.data.results
     })
       return this.films
-    }
+    },
+     filterSeries(search){
+      axios.get(`https://api.themoviedb.org/3/search/tv?api_key=41fa5602201a40cb6b8e1b749664bd8a&language=it&query=${search}`).then((response)=>{
+        this.series=response.data.results
+    })
+      return this.series
+    },
+     filterAll(search){
+      this.filterFilms(search)
+      this.filterSeries(search)
+    },
+    
+    
   }
 }
 </script>
