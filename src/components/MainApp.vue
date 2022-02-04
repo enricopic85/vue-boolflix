@@ -8,13 +8,14 @@
             <div class="info">
                 <p>Titolo: {{film.title}}</p>
                 <p>Titolo originale: {{film.original_title}}</p>
+                <span>Voto:</span>
+                <i v-for="i in vote(film.vote_average)" :key="i" class="far fa-star"></i>
                 <div class="flags">
                     <p>Lingua:</p>
                     <div class="img-flag">
                         <img :src="`/flags/${film.original_language}.jpg`" alt="">
                     </div>
                 </div>
-                <!-- <p>Lingua: {{film.original_language}}</p> -->
                 <p>Overwiew: {{film.overview}}</p>
             </div>
         </div> 
@@ -26,7 +27,13 @@
             <div class="info">
                 <p>Titolo: {{serie.name}}</p>
                 <p>Titolo originale: {{serie.original_name}}</p>
-                <p>Lingua: {{serie.original_language}}</p>
+                <p>Voto: {{vote(serie.vote_average)}}</p>
+                 <div class="flags">
+                    <p>Lingua:</p>
+                    <div class="img-flag">
+                        <img :src="`/flags/${serie.original_language}.jpg`" alt="">
+                    </div>
+                </div>
                 <p>Overwiew: {{serie.overview}}</p>
             </div>
         </div>       
@@ -38,6 +45,12 @@ export default {
     props:{
         films:Array,
         series:Array
+    },
+    methods:{
+        vote(voto){
+            const results=Math.round(voto/2);
+            return results;
+        }
     }
 }
 </script>
@@ -98,6 +111,9 @@ export default {
                     width: 100%;
                 }
             }
+        }
+        .fa-star{
+            color: yellow;
         }
     }
 </style>
