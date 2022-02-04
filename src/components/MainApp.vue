@@ -8,7 +8,13 @@
             <div class="info">
                 <p>Titolo: {{film.title}}</p>
                 <p>Titolo originale: {{film.original_title}}</p>
-                <p>Lingua: {{film.original_language}}</p>
+                <div class="flags">
+                    <p>Lingua:</p>
+                    <div class="img-flag">
+                        <img :src="`/flags/${film.original_language}.jpg`" alt="">
+                    </div>
+                </div>
+                <!-- <p>Lingua: {{film.original_language}}</p> -->
                 <p>Overwiew: {{film.overview}}</p>
             </div>
         </div> 
@@ -43,6 +49,7 @@ export default {
         flex-wrap: wrap;
         justify-content: center;
         align-items: center;
+        flex-direction: row;
         .card{
             width: 220px;
             height: 350px;
@@ -80,6 +87,16 @@ export default {
            
             p{
                 padding-bottom: 5px;
+            }
+        }
+        .flags{
+            display: flex;
+            .img-flag{
+                width: 30px;
+                height: 30px;
+                img{
+                    width: 100%;
+                }
             }
         }
     }
