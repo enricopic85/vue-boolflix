@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-   <search-bar @change="filterAll"/>
+   <search-bar 
+   @change="filterAll"
+   />
    <main-app 
    :films="films"
    :series="series"/>
@@ -34,19 +36,18 @@ export default {
       axios.get(`https://api.themoviedb.org/3/search/movie?api_key=41fa5602201a40cb6b8e1b749664bd8a&language=it&query=${input}`).then((response)=>{
         this.films=response.data.results
     })
-      return this.films
+      // return this.films
     },
      filterSeries(input){
       axios.get(`https://api.themoviedb.org/3/search/tv?api_key=41fa5602201a40cb6b8e1b749664bd8a&language=it&query=${input}`).then((response)=>{
         this.series=response.data.results
     })
-      return this.series
+      // return this.series
     },
      filterAll(search){
       this.filterFilms(search)
       this.filterSeries(search)
     },
-    
     
   }
 }

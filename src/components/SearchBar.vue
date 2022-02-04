@@ -2,7 +2,7 @@
     <div class="search">
         <div class="logo">BOOLFLIX</div>
         <div><input type="text" v-model="search"></div>
-        <div><button @click="$emit('change',search)">Search</button></div>
+        <div><button @click="resetInput">Search</button></div>
     </div>
 </template>
 
@@ -10,7 +10,13 @@
 export default {
     data(){
         return{
-            search:''
+            search:'',
+        }
+    },
+    methods:{
+        resetInput(){
+            this.$emit('change',this.search)
+            this.search=""
         }
     }
 }
