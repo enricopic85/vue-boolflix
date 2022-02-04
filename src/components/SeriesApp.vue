@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h2>Serie</h2>
+        <h2>SERIE</h2>
          <div class="container">
             <div class="card" v-for="(serie,i) in series" :key="i">
             <div class="img">
@@ -43,4 +43,5 @@ export default {
 <style lang="scss" scoped>
     @import './style/scrollbar.scss';
     @import './style/card.scss';
+   
 </style>

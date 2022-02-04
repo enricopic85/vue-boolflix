@@ -1,6 +1,6 @@
 <template>
-    <div class="container-card">
-        <films-app :films="films"/>
+    <div class="container-card" v-if="films.length>0 ||series.length>0">
+        <films-app :films="films" />
         <series-app :series="series"/>
     </div>
 </template>
@@ -17,8 +17,12 @@ export default {
         films:Array,
         series:Array
     },
+    methods:{
+        
+    }
 }
 </script>
 
 <style lang="scss" scoped>
+   
 </style>

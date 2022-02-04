@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h2>Film</h2>
+        <h2>FILM</h2>
         <div class="container">
             <div class="card" v-for="(film,i) in films" :key="i">
                 <div class="img">
@@ -42,63 +42,4 @@ export default {
 <style lang="scss" scoped>
 @import './style/scrollbar.scss';
 @import './style/card.scss';
-    // .container{
-    //          padding: 20px;
-    //         justify-content: center;
-    //         align-items: center;
-    //         width: 100%;
-    //         overflow-x: scroll;
-    //         display: flex;
-    //         .card{
-    //         min-width: 220px;
-    //         height: 350px;
-    //         border: 1px solid black;
-    //         margin-bottom: 20px;
-    //          position: relative;
-    //           &:hover{
-    //            .info{
-    //                display: block;
-    //            }
-    //         }
-
-    //         .img{
-    //             width: 100%;
-    //             height: 100%;
-    //             img{
-    //                 width: 100%;
-    //                 height: 100%;
-    //             }
-    //         }
-    //     }
-    //     .info{
-    //         position: absolute;
-    //         top: 0;
-    //         left: 0;
-    //         padding-top: 20px;
-    //         padding-left: 5px;
-    //         height: 350px;
-    //         font-size: 11px;
-    //         color: white;
-    //         background-color: black;
-    //         width: 100%;
-    //         display: none;
-           
-    //         p{
-    //             padding-bottom: 5px;
-    //         }
-    //     }
-    //     .flags{
-    //         display: flex;
-    //         .img-flag{
-    //             width: 30px;
-    //             height: 30px;
-    //             img{
-    //                 width: 100%;
-    //             }
-    //         }
-    //     }
-    //     .fa-star{
-    //         color: yellow;
-    //     }
-    //     }
 </style>
