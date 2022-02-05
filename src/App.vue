@@ -6,6 +6,7 @@
    <main-app 
    :films="films"
    :series="series"
+   :trend="trend"
    />
   </div>
 </template>
@@ -25,36 +26,44 @@ export default {
     return{
       films:[],
       series:[],
+      trend:[],
       api_key: '41fa5602201a40cb6b8e1b749664bd8a',
       language:'it'
     }
   },
   mounted(){
-     
+        this.trends();
   },
 
   methods:{
-    
-    filterFilms(input){
+   trends(){
       const params={
-        query:input,
         api_key: this.api_key,
-        language:this.language
       }
-      axios.get(`https://api.themoviedb.org/3/search/movie`, {params}).then((response)=>{
-        this.films=response.data.results
+        axios.get(`https://api.themoviedb.org/3/trending/movie/week`, {params}).then((response)=>{
+        this.trend= response.data.results
     })
-     
+    
+        
     },
-     filterSeries(input){
-        const params={
+    async  filterFilms(input){
+      this.films= await this.callApi(input,'movie');
+    },
+    
+    async filterSeries(input){
+    this.series= await this.callApi(input,'tv')
+    },
+
+   async callApi(input,type){
+       const params={
         query:input,
         api_key: this.api_key,
         language:this.language
       }
-      axios.get(`https://api.themoviedb.org/3/search/tv`, {params}).then((response)=>{
-        this.series=response.data.results
+      const results= await axios.get(`https://api.themoviedb.org/3/search/${type}`, {params}).then((response)=>{
+        return response.data.results
     })
+      return results;
     },
      filterAll(search){
       this.filterFilms(search)
