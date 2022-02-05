@@ -3,6 +3,11 @@
         <div class="logo">BOOLFLIX</div>
         <div class="input"><input type="text" v-model="search"></div>
         <div class="button"><button @click="resetInput()">Search</button></div>
+        <select name="adultFilter" id="adultFilter">
+            <option value="adultFilter">Filtro contenuti per adulti</option>
+            <option value="true">Si</option>
+            <option value="false">No</option>
+        </select>
     </div>
 </template>
 
@@ -12,9 +17,6 @@ export default {
         return{
             search:'',
         }
-    },
-    props:{
-        visible:Boolean
     },
     methods:{
         resetInput(){

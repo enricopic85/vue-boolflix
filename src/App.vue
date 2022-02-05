@@ -25,6 +25,8 @@ export default {
     return{
       films:[],
       series:[],
+      api_key: '41fa5602201a40cb6b8e1b749664bd8a',
+      language:'it'
     }
   },
   mounted(){
@@ -32,15 +34,25 @@ export default {
   },
 
   methods:{
-   
+    
     filterFilms(input){
-      axios.get(`https://api.themoviedb.org/3/search/movie?api_key=41fa5602201a40cb6b8e1b749664bd8a&language=it&query=${input}`).then((response)=>{
+      const params={
+        query:input,
+        api_key: this.api_key,
+        language:this.language
+      }
+      axios.get(`https://api.themoviedb.org/3/search/movie`, {params}).then((response)=>{
         this.films=response.data.results
     })
      
     },
      filterSeries(input){
-      axios.get(`https://api.themoviedb.org/3/search/tv?api_key=41fa5602201a40cb6b8e1b749664bd8a&language=it&query=${input}`).then((response)=>{
+        const params={
+        query:input,
+        api_key: this.api_key,
+        language:this.language
+      }
+      axios.get(`https://api.themoviedb.org/3/search/tv`, {params}).then((response)=>{
         this.series=response.data.results
     })
     },
