@@ -91,7 +91,7 @@ export default {
     
     async filterSeries(input){
       this.series= await this.callApi(input,'tv');
-      this.filteredSeries= await this.callApi(input,'tv')
+      this.genreSeries= await this.callApi(input,'tv')
     },
 
    async callApi(input,type){
