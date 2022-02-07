@@ -10,34 +10,16 @@
 </template>
 
 <script>
-import axios from 'axios'
+
 import MyFilms from './MyFilms.vue';
 export default {
   components: { MyFilms },
-    data(){
-        return{
-            api_key: '41fa5602201a40cb6b8e1b749664bd8a',
-            actors:[]
-        }
-    },
-    mounted(){
-        this.actor(this.film.id);
-    },
+    
+   
     props:{
         films:Array
     },
-     methods:{
-       
-        actor(film_id){
-             const params={
-            api_key: this.api_key,
-      }
-       axios.get(`hhttps://api.themoviedb.org/3/movie/${film_id}/credits`,{params}).then((response)=>{
-        this.actors= response.data.cast
-    })
-            console.log(this.actors)
-        }
-    }
+     
 }
 </script>
 

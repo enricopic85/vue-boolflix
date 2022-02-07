@@ -22,15 +22,34 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
     props:{
         film:Object
+    },
+    data(){
+        return{
+            api_key: '41fa5602201a40cb6b8e1b749664bd8a',
+            actors:[]
+        }
+    },
+     mounted(){
+        this.actor(this.film.id);
     },
      methods:{
          vote(voto){
             const results=Math.round(voto/2);
             return results;
         },
+        actor(film_id){
+             const params={
+            api_key: this.api_key,
+      }
+       axios.get(`hhttps://api.themoviedb.org/3/movie/${film_id}/credits`,{params}).then((response)=>{
+        this.actors= response.data.cast
+    })
+            console.log(this.actors)
+        }
      }
 }
 </script>
