@@ -1,7 +1,9 @@
 <template>
   <div id="app">
    <search-bar 
+   @searchGenre="filterTrend"
    @change="filterAll"
+   :genre="genre"
    />
    <main-app 
    :films="films"
@@ -9,6 +11,7 @@
    :trend="trend"
    />
   </div>
+ 
 </template>
 
 <script>
@@ -27,16 +30,36 @@ export default {
       films:[],
       series:[],
       trend:[],
+      filteredTrend:[],
       api_key: '41fa5602201a40cb6b8e1b749664bd8a',
-      language:'it'
+      language:'it',
+      genre:[],
     }
   },
   mounted(){
         this.trends();
+        this.genreList();
+        this.filteredTrend();
   },
 
   methods:{
-   trends(){
+    filterTrend(){
+        this.filteredTrend=this.trend.filter((gen)=>{
+          for(let i=0;i < gen.length;i++){
+            return console.log(gen)
+          }
+        })
+    },
+    genreList(){
+         const params={
+        api_key: this.api_key,
+      }
+       axios.get(`https://api.themoviedb.org/3/genre/movie/list`, {params}).then((response)=>{
+        this.genre= response.data.genres
+    })
+    },
+
+    trends(){
       const params={
         api_key: this.api_key,
       }

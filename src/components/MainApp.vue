@@ -2,7 +2,7 @@
     <div class="container-card">
         <trends-app :trend="trend" v-if="(films.length===0 && series.length===0) "/>
         <films-app :films="films" v-if="films.length>0"/>
-        <series-app :series="series" v-if="series.length>0" />
+        <series-app :series="series" v-if="series.length>0"/>
     </div>
 </template>
 
@@ -11,11 +11,7 @@ import FilmsApp from './FilmsApp.vue'
 import SeriesApp from './SeriesApp.vue'
 import TrendsApp from './TrendsApp.vue'
 export default {
-    data(){
-        return{
-            trends:true
-        }
-    },
+    
     components:{
         FilmsApp,
         SeriesApp,
