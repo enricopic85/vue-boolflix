@@ -36,7 +36,8 @@ export default {
         }
     },
     props:{
-        genre:Array
+        genre:Array,
+
     }
 }
 </script>

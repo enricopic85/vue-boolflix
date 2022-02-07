@@ -1,14 +1,14 @@
 <template>
   <div id="app">
    <search-bar 
-   @searchGenre="filterTrend"
+   @searchGenre="genreFilterAll"
    @change="filterAll"
    :genre="genre"
    />
    <main-app 
-   :films="films"
-   :series="series"
-   :trend="trend"
+   :films="genreFilms"
+   :series="genreSeries"
+   :trend="filteredTrend"
    />
   </div>
  
@@ -31,6 +31,8 @@ export default {
       series:[],
       trend:[],
       filteredTrend:[],
+      genreFilms:[],
+      genreSeries:[],
       api_key: '41fa5602201a40cb6b8e1b749664bd8a',
       language:'it',
       genre:[],
@@ -39,15 +41,27 @@ export default {
   mounted(){
         this.trends();
         this.genreList();
-        this.filteredTrend();
   },
 
   methods:{
-    filterTrend(){
-        this.filteredTrend=this.trend.filter((gen)=>{
-          for(let i=0;i < gen.length;i++){
-            return console.log(gen)
-          }
+    genreFilterAll(genre_id){
+        this.filterTrend(genre_id);
+        this.filtersFilms(genre_id);
+        this.filtersSeries(genre_id)
+    },
+    filterTrend(genre_id){
+        this.filteredTrend=this.trend.filter((movie)=>{
+          return movie.genre_ids.includes(genre_id) || genre_id === 'all'
+        })
+    },
+    filtersFilms(genre_id){
+        this.genreFilms= this.films.filter((movie)=>{
+          return movie.genre_ids.includes(genre_id) || genre_id === 'all'
+        })
+    },
+    filtersSeries(genre_id){
+        this.genreSeries= this.series.filter((movie)=>{
+          return movie.genre_ids.includes(genre_id) || genre_id === 'all'
         })
     },
     genreList(){
@@ -64,17 +78,20 @@ export default {
         api_key: this.api_key,
       }
         axios.get(`https://api.themoviedb.org/3/trending/movie/week`, {params}).then((response)=>{
-        this.trend= response.data.results
+        this.trend = response.data.results
+        this.filteredTrend = response.data.results
     })
     
         
     },
     async  filterFilms(input){
       this.films= await this.callApi(input,'movie');
+      this.genreFilms= await this.callApi(input,'movie');
     },
     
     async filterSeries(input){
-    this.series= await this.callApi(input,'tv')
+      this.series= await this.callApi(input,'tv');
+      this.filteredSeries= await this.callApi(input,'tv')
     },
 
    async callApi(input,type){
