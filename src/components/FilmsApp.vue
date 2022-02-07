@@ -19,7 +19,7 @@
                         </div>
                     </div>
                     <p>Overwiew: {{film.overview}}</p>
-                    <p>{{actor(film.id)}}</p>
+                    <p></p>
                 </div>
             </div> 
        </div>
@@ -36,7 +36,7 @@ export default {
         }
     },
     mounted(){
-        this.actor();
+        this.actor(this.films.id);
     },
     props:{
         films:Array
@@ -53,6 +53,7 @@ export default {
        axios.get(`hhttps://api.themoviedb.org/3/movie/${film_id}/credits`,{params}).then((response)=>{
         this.actors= response.data.cast
     })
+            console.log(this.actors)
         }
     }
 }
