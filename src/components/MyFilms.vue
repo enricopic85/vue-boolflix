@@ -24,12 +24,14 @@
 <script>
 export default {
     props:{
-        film:Array
+        film:Object
     },
-     vote(voto){
+     methods:{
+         vote(voto){
             const results=Math.round(voto/2);
             return results;
         },
+     }
 }
 </script>
 
