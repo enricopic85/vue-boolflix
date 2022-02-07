@@ -16,9 +16,11 @@
                         </div>
                     </div>
                     <p>Overwiew: {{film.overview}}</p>
+                    <p>Cast:</p>
+                    <p v-for="actor in actors" :key="actor.id">{{actor.name}}</p>
                     <p></p>
                 </div>
-            </div> 
+        </div> 
 </template>
 
 <script>
@@ -45,10 +47,15 @@ export default {
              const params={
             api_key: this.api_key,
       }
-       axios.get(`hhttps://api.themoviedb.org/3/movie/${film_id}/credits`,{params}).then((response)=>{
-        this.actors= response.data.cast
+       axios.get(`https://api.themoviedb.org/3/movie/${film_id}/credits`,{params}).then((response)=>{
+                    // this.actors= response.data.cast
+                    for(let i=0;i<this.actors.length;i++){
+                        if (this.actors.length<5) {
+                            response.data.push(this.film.id)
+                        }
+                    }
     })
-            console.log(this.actors)
+            
         }
      }
 }
